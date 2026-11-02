@@ -1,2 +1,3 @@
 vídeo no youtube: https://youtu.be/MeP7AzfZS0w
 Azure Boards: https://dev.azure.com/PetPulse/PetPulse
+GitHub : https://github.com/Fiap-2tdspg-Challenge/PetPulse-QAT/tree/develop
