@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TC-UI-01 - Login com senha inválida (caso manual CT17, cenário negativo)
+Entrada: perfil Tutor, security.tutor@petpulse.com / 000000
+Saída esperada: diálogo "Erro" com "E-mail ou senha incorretos." e o app continua na tela de login.</description>
+   <name>TC-UI-01 Login com senha invalida</name>
+   <tag>PetPulse, UI, Mobile</tag>
+   <comment></comment>
+   <testCaseGuid>88fdf5ad-0d6d-46f6-ba3c-f596b7708d6a</testCaseGuid>
+</TestCaseEntity>

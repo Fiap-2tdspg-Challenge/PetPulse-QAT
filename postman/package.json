@@ -1,0 +1,15 @@
+{
+  "name": "petpulse-qa-automacao",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Testes automatizados da PetPulse-Api com Postman/Newman",
+  "scripts": {
+    "test": "newman run PetPulse-QA.postman_collection.json -e PetPulse-Render.postman_environment.json --timeout-request 300000",
+    "test:relatorio": "newman run PetPulse-QA.postman_collection.json -e PetPulse-Render.postman_environment.json --timeout-request 300000 -r cli,htmlextra --reporter-htmlextra-export evidencias/relatorio-newman.html --reporter-htmlextra-title \"PetPulse - Testes automatizados\"",
+    "test:carga": "newman run PetPulse-QA.postman_collection.json -e PetPulse-Render.postman_environment.json --timeout-request 300000 -n 5 --delay-request 100"
+  },
+  "devDependencies": {
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.23.1"
+  }
+}

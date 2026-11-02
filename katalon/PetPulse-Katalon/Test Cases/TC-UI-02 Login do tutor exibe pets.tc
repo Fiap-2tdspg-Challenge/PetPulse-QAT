@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TC-UI-02 - Login do tutor e exibição dos pets (caso manual CT17)
+Pré-condição (criada pela API): pet "Bidu QA", CACHORRO / Golden Retriever, nascido em 2023.
+Entrada: perfil Tutor, security.tutor@petpulse.com / 123456
+Saída esperada: Home com "Olá, Tutor!", seção "Seus pets" e o pet "Bidu QA" com a raça Golden Retriever.</description>
+   <name>TC-UI-02 Login do tutor exibe pets</name>
+   <tag>PetPulse, UI, Mobile</tag>
+   <comment></comment>
+   <testCaseGuid>3ff62e3d-a34d-4aa7-9473-c33c8d85dc35</testCaseGuid>
+</TestCaseEntity>

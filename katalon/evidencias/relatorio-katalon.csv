@@ -1,0 +1,42 @@
+Suite/Test/Step Name,Browser,Description,Tag,Start time,End time,Duration,Status
+PetPulse UI,,"Testes de interface do app PetPulse-mobile (CT17, CT18, CT19)",,01-11-2026 21:33:05,01-11-2026 21:36:52,"3m - 46,870s",PASSED
+,,,,,,,
+Test Cases/TC-UI-01 Login com senha invalida,,"TC-UI-01 - Login com senha inválida (caso manual CT17, cenário negativo)
+Entrada: perfil Tutor, security.tutor@petpulse.com / 000000
+Saída esperada: diálogo ""Erro"" com ""E-mail ou senha incorretos."" e o app continua na tela de login.","PetPulse, UI, Mobile",01-11-2026 21:33:05,01-11-2026 21:33:40,"34,805s",PASSED
+Helpers.abrirApp(),,,,01-11-2026 21:33:05,01-11-2026 21:33:24,"18,330s",PASSED
+"Helpers.login(""Tutor"", TUTOR_EMAIL, ""000000"")",,,,01-11-2026 21:33:24,01-11-2026 21:33:32,"8,110s",PASSED
+"waitForElementPresent(Helpers.dialogoMensagem(), 120)",,,,01-11-2026 21:33:32,01-11-2026 21:33:35,"2,749s",PASSED
+"verifyElementText(Helpers.dialogoTitulo(), ""Erro"")",,,,01-11-2026 21:33:35,01-11-2026 21:33:35,"0,079s",PASSED
+"verifyElementText(Helpers.dialogoMensagem(), ""E-mail ou senha incorretos."")",,,,01-11-2026 21:33:35,01-11-2026 21:33:35,"0,072s",PASSED
+"tap(Helpers.dialogoOk(), 10)",,,,01-11-2026 21:33:35,01-11-2026 21:33:35,"0,101s",PASSED
+"verifyElementExist(Helpers.texto(""Entre na sua conta""), 10)",,,,01-11-2026 21:33:35,01-11-2026 21:33:35,"0,627s",PASSED
+"verifyElementNotExist(Helpers.textoContem(""Olá,""), 3)",,,,01-11-2026 21:33:35,01-11-2026 21:33:38,"3,084s",PASSED
+closeApplication(),,,,01-11-2026 21:33:38,01-11-2026 21:33:40,"1,361s",PASSED
+,,,,,,,
+Test Cases/TC-UI-02 Login do tutor exibe pets,,"TC-UI-02 - Login do tutor e exibição dos pets (caso manual CT17)
+Pré-condição (criada pela API): pet ""Bidu QA"", CACHORRO / Golden Retriever, nascido em 2023.
+Entrada: perfil Tutor, security.tutor@petpulse.com / 123456
+Saída esperada: Home com ""Olá, Tutor!"", seção ""Seus pets"" e o pet ""Bidu QA"" com a raça Golden Retriever.","PetPulse, UI, Mobile",01-11-2026 21:33:40,01-11-2026 21:34:37,"57,308s",PASSED
+dados = Helpers.prepararPet(false),,,,01-11-2026 21:33:40,01-11-2026 21:33:46,"5,681s",PASSED
+try,,,,01-11-2026 21:33:46,01-11-2026 21:34:33,"46,920s",PASSED
+Finally,,,,01-11-2026 21:34:33,01-11-2026 21:34:37,"4,569s",PASSED
+,,,,,,,
+Test Cases/TC-UI-03 Alerta inteligente na Home,,"TC-UI-03 - Alerta inteligente exibido na Home (caso manual CT18)
+Pré-condição (criada pela API): pet ""Bidu QA"" com coleira e uma leitura de frequência cardíaca 195,
+que faz a API gerar o alerta FREQUENCIA_CARDIACA de risco ALTO.
+Entrada: login do tutor security.tutor@petpulse.com / 123456 e toque no sino da Home.
+Saída esperada: modal ""Notificações"" com ""Frequência cardíaca fora da faixa esperada."" e a recomendação.","PetPulse, UI, Mobile",01-11-2026 21:34:37,01-11-2026 21:35:41,"1m - 3,508s",PASSED
+dados = Helpers.prepararPet(true),,,,01-11-2026 21:34:37,01-11-2026 21:34:43,"5,898s",PASSED
+try,,,,01-11-2026 21:34:43,01-11-2026 21:35:34,"51,125s",PASSED
+Finally,,,,01-11-2026 21:35:34,01-11-2026 21:35:41,"6,390s",PASSED
+,,,,,,,
+Test Cases/TC-UI-04 Veterinario cadastra historico,,"TC-UI-04 - Veterinário cadastra histórico clínico pelo painel (caso manual CT19)
+Pré-condição (criada pela API): pet ""Bidu QA"" sem histórico.
+Entrada: login Veterinário carlos.andrade@vetcare.com / 123456, busca ""Bidu QA"",
+         registro Consulta ""Consulta de rotina QA"" com retorno 10/01/2027.
+Saída esperada: diálogo ""Registro cadastrado com sucesso!"", registro listado no histórico do pet
+                e gravado na API (GET /pets/{id}/health-summary).","PetPulse, UI, Mobile",01-11-2026 21:35:41,01-11-2026 21:36:52,"1m - 11,111s",PASSED
+dados = Helpers.prepararPet(false),,,,01-11-2026 21:35:41,01-11-2026 21:35:45,"3,990s",PASSED
+try,,,,01-11-2026 21:35:45,01-11-2026 21:36:47,"1m - 2,141s",PASSED
+Finally,,,,01-11-2026 21:36:47,01-11-2026 21:36:52,"4,877s",PASSED

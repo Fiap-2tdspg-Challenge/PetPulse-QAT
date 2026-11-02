@@ -1,0 +1,1172 @@
+{
+  "info": {
+    "name": "PetPulse - QA Sprint 4 (Testes automatizados)",
+    "description": "Testes automatizados de integração e desempenho da PetPulse-Api (Spring Boot + Oracle, publicada no Render). Cada request referencia o caso de teste manual correspondente (CTxx) cadastrado no Azure Boards. Executar a coleção inteira, em ordem, pelo Collection Runner ou pelo Newman.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Requisito de desempenho aplicado a todas as requisições",
+          "pm.test(\"[Desempenho] tempo de resposta abaixo de \" + pm.environment.get(\"max_response_ms\") + \" ms\", function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(Number(pm.environment.get(\"max_response_ms\")));",
+          "});"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "tutor_token",
+      "value": ""
+    },
+    {
+      "key": "professional_token",
+      "value": ""
+    },
+    {
+      "key": "pet_id",
+      "value": ""
+    },
+    {
+      "key": "device_id",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "01 - Disponibilidade e autenticação",
+      "description": "CT20, CT01, CT02, CT03",
+      "item": [
+        {
+          "name": "CT20 - Health check da API publicada",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/actuator/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "actuator",
+                "health"
+              ]
+            },
+            "description": ""
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Aplicação UP\", () => pm.expect(body.status).to.eql(\"UP\"));",
+                  "pm.test(\"Banco Oracle UP\", () => {",
+                  "    pm.expect(body.components.db.status).to.eql(\"UP\");",
+                  "    pm.expect(body.components.db.details.database).to.eql(\"Oracle\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT01 - Login tutor (credenciais válidas)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{tutor_email}}\",\n  \"password\": \"{{tutor_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const token = pm.response.json().token;",
+                  "pm.test(\"Token JWT retornado\", () => pm.expect(token).to.match(/^eyJ[\\w-]+\\.[\\w-]+\\.[\\w-]+$/));",
+                  "const payload = JSON.parse(atob(token.split(\".\")[1].replace(/-/g, \"+\").replace(/_/g, \"/\")));",
+                  "pm.test(\"Claim role = ROLE_TUTOR\", () => pm.expect(payload.role).to.eql(\"ROLE_TUTOR\"));",
+                  "pm.test(\"Subject = e-mail do tutor\", () => pm.expect(payload.sub).to.eql(pm.environment.get(\"tutor_email\")));",
+                  "pm.test(\"Expiração de 20 minutos\", () => pm.expect(payload.exp - payload.iat).to.eql(1200));",
+                  "pm.collectionVariables.set(\"tutor_token\", token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT01 - Login profissional (credenciais válidas)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{professional_email}}\",\n  \"password\": \"{{professional_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const token = pm.response.json().token;",
+                  "const payload = JSON.parse(atob(token.split(\".\")[1].replace(/-/g, \"+\").replace(/_/g, \"/\")));",
+                  "pm.test(\"Claim role = ROLE_PROFESSIONAL\", () => pm.expect(payload.role).to.eql(\"ROLE_PROFESSIONAL\"));",
+                  "pm.collectionVariables.set(\"professional_token\", token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT02 - Login com senha inválida",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{tutor_email}}\",\n  \"password\": \"senhaErrada\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 401\", () => pm.response.to.have.status(401));",
+                  "pm.test(\"Nenhum token retornado\", () => pm.expect(pm.response.text()).to.not.include(\"token\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT03 - GET /pets sem token",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets"
+              ]
+            },
+            "description": ""
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 - Cadastros e regras de negócio",
+      "description": "CT06, CT07, CT08, CT04, CT09, CT16",
+      "item": [
+        {
+          "name": "CT06 - Cadastro de tutor com dados inválidos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/tutors",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tutors"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jo\",\n  \"cpf\": \"123\",\n  \"email\": \"email-invalido\",\n  \"password\": \"123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));",
+                  "const fields = pm.response.json().map(e => e.field).sort();",
+                  "pm.test(\"Erros em name, cpf, email e password\", () => pm.expect(fields).to.eql([\"cpf\", \"email\", \"name\", \"password\"]));",
+                  "pm.test(\"Mensagem de e-mail inválido\", () => pm.expect(pm.response.json().find(e => e.field === \"email\").message).to.eql(\"E-mail inválido\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT06 - Cadastro de tutor com e-mail duplicado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/tutors",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tutors"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Tutor Duplicado\",\n  \"cpf\": \"11144477735\",\n  \"email\": \"{{tutor_email}}\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 409\", () => pm.response.to.have.status(409));",
+                  "pm.test(\"Mensagem de e-mail já cadastrado\", () => pm.expect(pm.response.json().message).to.eql(\"E-mail já cadastrado\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT07 - Cadastro de pet válido",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bidu QA\",\n  \"birthDate\": \"2023-03-15\",\n  \"weight\": 12.5,\n  \"sex\": \"M\",\n  \"neutered\": true,\n  \"tutorId\": {{tutor_id}},\n  \"speciesId\": 1,\n  \"breedId\": 1,\n  \"petSizeId\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.response.to.have.status(201));",
+                  "const pet = pm.response.json();",
+                  "pm.test(\"Dados do pet retornados\", () => {",
+                  "    pm.expect(pet.name).to.eql(\"Bidu QA\");",
+                  "    pm.expect(Number(pet.weight)).to.eql(12.5);",
+                  "    pm.expect(pet.sex).to.eql(\"M\");",
+                  "    pm.expect(pet.neutered).to.eql(true);",
+                  "    pm.expect(pet.tutorId).to.eql(Number(pm.environment.get(\"tutor_id\")));",
+                  "});",
+                  "pm.test(\"Espécie, raça e porte resolvidos\", () => {",
+                  "    pm.expect(pet.speciesName).to.eql(\"CACHORRO\");",
+                  "    pm.expect(pet.breedName).to.eql(\"Golden Retriever\");",
+                  "    pm.expect(pet.petSizeDescription).to.eql(\"MEDIO\");",
+                  "});",
+                  "pm.collectionVariables.set(\"pet_id\", pet.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT08 - Cadastro de pet com raça incompatível",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Mingau QA\",\n  \"birthDate\": \"2022-06-01\",\n  \"weight\": 4.2,\n  \"sex\": \"F\",\n  \"neutered\": false,\n  \"tutorId\": {{tutor_id}},\n  \"speciesId\": 2,\n  \"breedId\": 1,\n  \"petSizeId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Mensagem de raça incompatível\", () => pm.expect(pm.response.json().message).to.eql(\"A raça informada não pertence à espécie selecionada\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT08 - Cadastro de pet com peso zero e nascimento futuro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bidu QA\",\n  \"birthDate\": \"2099-01-01\",\n  \"weight\": 0,\n  \"sex\": \"M\",\n  \"neutered\": true,\n  \"tutorId\": {{tutor_id}},\n  \"speciesId\": 1,\n  \"breedId\": 1,\n  \"petSizeId\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));",
+                  "const errors = pm.response.json();",
+                  "pm.test(\"Erro de peso\", () => pm.expect(errors.find(e => e.field === \"weight\").message).to.eql(\"O peso tem que ser maior que zero.\"));",
+                  "pm.test(\"Erro de data de nascimento\", () => pm.expect(errors.find(e => e.field === \"birthDate\").message).to.eql(\"A data de nascimento não pode estar no futuro\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT04 - Profissional tentando cadastrar pet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{professional_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bidu QA\",\n  \"birthDate\": \"2023-03-15\",\n  \"weight\": 12.5,\n  \"sex\": \"M\",\n  \"neutered\": true,\n  \"tutorId\": {{tutor_id}},\n  \"speciesId\": 1,\n  \"breedId\": 1,\n  \"petSizeId\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT09 - Consulta de pet inexistente",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pets/999999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets",
+                "999999"
+              ]
+            },
+            "description": ""
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404\", () => pm.response.to.have.status(404));",
+                  "pm.test(\"Mensagem de não encontrado\", () => pm.expect(pm.response.json().message).to.eql(\"Pet com id 999999 não encontrado\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT16 - Tutor tentando alterar outro tutor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/tutors/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tutors",
+                "1"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nome Alterado QA\",\n  \"cpf\": \"52998224725\",\n  \"email\": \"{{tutor_email}}\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 403\", () => pm.response.to.have.status(403));",
+                  "pm.test(\"Mensagem de propriedade da conta\", () => pm.expect(pm.response.json().message).to.eql(\"Você só pode alterar ou excluir a sua própria conta\"));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 - Fluxo IoT -> Smart Alert -> Health Summary",
+      "description": "CT10, CT11, CT12, CT13, CT14, CT15",
+      "item": [
+        {
+          "name": "CT10 - Vincular dispositivo IoT ao pet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/iot-devices",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "iot-devices"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"petId\": {{pet_id}},\n  \"collectionIntervalMinutes\": 5,\n  \"heartRate\": 90,\n  \"activityLevel\": 5,\n  \"pressure\": 12,\n  \"status\": \"ATIVO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.response.to.have.status(201));",
+                  "const device = pm.response.json();",
+                  "pm.test(\"Dispositivo vinculado ao pet\", () => {",
+                  "    pm.expect(device.petId).to.eql(Number(pm.collectionVariables.get(\"pet_id\")));",
+                  "    pm.expect(device.petName).to.eql(\"Bidu QA\");",
+                  "    pm.expect(device.status).to.eql(\"ATIVO\");",
+                  "});",
+                  "pm.collectionVariables.set(\"device_id\", device.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT11 - Leitura IoT normal (sem alerta)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/iot-readings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "iot-readings"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deviceId\": {{device_id}},\n  \"heartRate\": 100,\n  \"activityLevel\": 4,\n  \"pressure\": 12\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.response.to.have.status(201));",
+                  "const r = pm.response.json();",
+                  "pm.test(\"Leitura registrada com os valores enviados\", () => {",
+                  "    pm.expect(r.heartRate).to.eql(100);",
+                  "    pm.expect(Number(r.activityLevel)).to.eql(4);",
+                  "    pm.expect(Number(r.pressure)).to.eql(12);",
+                  "    pm.expect(r.readingDate).to.be.a(\"string\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT11 - Snapshot do dispositivo atualizado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/iot-devices/{{device_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "iot-devices",
+                "{{device_id}}"
+              ]
+            },
+            "description": ""
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const d = pm.response.json();",
+                  "pm.test(\"Dispositivo reflete a última leitura\", () => {",
+                  "    pm.expect(d.heartRate).to.eql(100);",
+                  "    pm.expect(Number(d.activityLevel)).to.eql(4);",
+                  "    pm.expect(Number(d.pressure)).to.eql(12);",
+                  "    pm.expect(d.lastReadingDate).to.be.a(\"string\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT11 - Nenhum alerta gerado para leitura normal",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pets/{{pet_id}}/health-summary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets",
+                "{{pet_id}}",
+                "health-summary"
+              ]
+            },
+            "description": ""
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Lista de alertas vazia\", () => pm.expect(pm.response.json().alerts).to.have.lengthOf(0));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT12 - Leitura IoT com frequência cardíaca 195",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/iot-readings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "iot-readings"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deviceId\": {{device_id}},\n  \"heartRate\": 195,\n  \"activityLevel\": 4,\n  \"pressure\": 12\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Frequência registrada\", () => pm.expect(pm.response.json().heartRate).to.eql(195));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT12 - Alerta FREQUENCIA_CARDIACA ALTO gerado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pets/{{pet_id}}/health-summary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets",
+                "{{pet_id}}",
+                "health-summary"
+              ]
+            },
+            "description": ""
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const alerts = pm.response.json().alerts;",
+                  "pm.test(\"Exatamente 1 alerta\", () => pm.expect(alerts).to.have.lengthOf(1));",
+                  "pm.test(\"Alerta de frequência cardíaca, risco ALTO, origem IoT\", () => {",
+                  "    const a = alerts[0];",
+                  "    pm.expect(a.alertTypeDescription).to.eql(\"FREQUENCIA_CARDIACA\");",
+                  "    pm.expect(a.riskLevel).to.eql(\"ALTO\");",
+                  "    pm.expect(a.origin).to.eql(\"DISPOSITIVO_IOT\");",
+                  "    pm.expect(a.status).to.eql(\"ABERTO\");",
+                  "    pm.expect(a.message).to.eql(\"Frequência cardíaca fora da faixa esperada.\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT13 - Leitura IoT nos valores limite (sem alerta)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/iot-readings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "iot-readings"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deviceId\": {{device_id}},\n  \"heartRate\": 180,\n  \"activityLevel\": 2,\n  \"pressure\": 16\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.response.to.have.status(201));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT13 - Leitura IoT com pressão 17 e atividade 1",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/iot-readings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "iot-readings"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deviceId\": {{device_id}},\n  \"heartRate\": 120,\n  \"activityLevel\": 1,\n  \"pressure\": 17\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.response.to.have.status(201));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT14 - Profissional registra histórico clínico",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{professional_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/clinical-histories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "clinical-histories"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"petId\": {{pet_id}},\n  \"recordType\": \"VACINA\",\n  \"description\": \"Vacina V10 - dose anual\",\n  \"returnDate\": \"2027-03-15\",\n  \"observations\": \"Pet reagiu bem, sem efeitos colaterais.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201\", () => pm.response.to.have.status(201));",
+                  "const h = pm.response.json();",
+                  "pm.test(\"Histórico registrado\", () => {",
+                  "    pm.expect(h.petId).to.eql(Number(pm.collectionVariables.get(\"pet_id\")));",
+                  "    pm.expect(h.recordType).to.eql(\"VACINA\");",
+                  "    pm.expect(h.description).to.eql(\"Vacina V10 - dose anual\");",
+                  "    pm.expect(h.returnDate).to.eql(\"2027-03-15\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CT15 - Resumo de saúde consolidado (profissional)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{professional_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pets/{{pet_id}}/health-summary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets",
+                "{{pet_id}}",
+                "health-summary"
+              ]
+            },
+            "description": ""
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const s = pm.response.json();",
+                  "pm.test(\"Dados do pet\", () => pm.expect(s.pet.name).to.eql(\"Bidu QA\"));",
+                  "pm.test(\"1 histórico clínico (VACINA)\", () => {",
+                  "    pm.expect(s.clinicalHistories).to.have.lengthOf(1);",
+                  "    pm.expect(s.clinicalHistories[0].recordType).to.eql(\"VACINA\");",
+                  "});",
+                  "pm.test(\"4 leituras IoT\", () => pm.expect(s.latestIoTReadings.map(r => r.heartRate).sort((a, b) => a - b)).to.eql([100, 120, 180, 195]));",
+                  "pm.test(\"3 alertas: frequência, pressão e atividade\", () => {",
+                  "    const types = s.alerts.map(a => a.alertTypeDescription + \"/\" + a.riskLevel).sort();",
+                  "    pm.expect(types).to.eql([\"ATIVIDADE/MEDIO\", \"FREQUENCIA_CARDIACA/ALTO\", \"PRESSAO/ALTO\"]);",
+                  "});",
+                  "pm.collectionVariables.set(\"cleanup\", JSON.stringify({",
+                  "    alerts: s.alerts.map(a => a.id),",
+                  "    readings: s.latestIoTReadings.map(r => r.id),",
+                  "    histories: s.clinicalHistories.map(h => h.id)",
+                  "}));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 - Limpeza dos dados de teste",
+      "description": "Remove os registros criados para que a coleção possa ser executada novamente com os mesmos dados controlados.",
+      "item": [
+        {
+          "name": "Limpeza - remover pet de teste e dependências",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tutor_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pets/{{pet_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pets",
+                "{{pet_id}}"
+              ]
+            },
+            "description": ""
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Remove alertas, leituras e históricos; depois o dispositivo. O pet é removido pela própria request.",
+                  "const base = pm.environment.get(\"base_url\");",
+                  "const auth = { key: \"Authorization\", value: \"Bearer \" + pm.collectionVariables.get(\"tutor_token\") };",
+                  "const ids = JSON.parse(pm.collectionVariables.get(\"cleanup\") || '{\"alerts\":[],\"readings\":[],\"histories\":[]}');",
+                  "const queue = []",
+                  "    .concat(ids.alerts.map(id => \"/smart-alerts/\" + id))",
+                  "    .concat(ids.readings.map(id => \"/iot-readings/\" + id))",
+                  "    .concat(ids.histories.map(id => \"/clinical-histories/\" + id));",
+                  "if (pm.collectionVariables.get(\"device_id\")) queue.push(\"/iot-devices/\" + pm.collectionVariables.get(\"device_id\"));",
+                  "(function next() {",
+                  "    const path = queue.shift();",
+                  "    if (!path) return;",
+                  "    pm.sendRequest({ url: base + path, method: \"DELETE\", header: [auth] }, (err, res) => {",
+                  "        console.log(\"DELETE \" + path + \" -> \" + (err ? err : res.code));",
+                  "        next();",
+                  "    });",
+                  "})();"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 204\", () => pm.response.to.have.status(204));",
+                  "pm.collectionVariables.set(\"pet_id\", \"\");",
+                  "pm.collectionVariables.set(\"device_id\", \"\");",
+                  "pm.collectionVariables.set(\"cleanup\", \"\");"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

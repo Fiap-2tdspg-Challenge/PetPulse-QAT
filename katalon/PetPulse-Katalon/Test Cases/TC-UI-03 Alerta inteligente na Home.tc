@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TC-UI-03 - Alerta inteligente exibido na Home (caso manual CT18)
+Pré-condição (criada pela API): pet "Bidu QA" com coleira e uma leitura de frequência cardíaca 195,
+que faz a API gerar o alerta FREQUENCIA_CARDIACA de risco ALTO.
+Entrada: login do tutor security.tutor@petpulse.com / 123456 e toque no sino da Home.
+Saída esperada: modal "Notificações" com "Frequência cardíaca fora da faixa esperada." e a recomendação.</description>
+   <name>TC-UI-03 Alerta inteligente na Home</name>
+   <tag>PetPulse, UI, Mobile</tag>
+   <comment></comment>
+   <testCaseGuid>9d518dcc-453c-4ad5-b61c-c69c18d12a14</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalVariableEntities>
+   <description></description>
+   <name>default</name>
+   <tag></tag>
+   <defaultProfile>true</defaultProfile>
+   <GlobalVariableEntity>
+      <description>Caminho completo do APK do app</description>
+      <initValue>'C:/Users/gnlos/OneDrive/Área de Trabalho/SPRINT 4/automacao-katalon/apk/PetPulse.apk'</initValue>
+      <name>APK_PATH</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description>API publicada no Render</description>
+      <initValue>'https://petpulse-api-j1k8.onrender.com'</initValue>
+      <name>API_URL</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description>Tutor de demonstração</description>
+      <initValue>'security.tutor@petpulse.com'</initValue>
+      <name>TUTOR_EMAIL</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description>Id do tutor de demonstração</description>
+      <initValue>23</initValue>
+      <name>TUTOR_ID</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description>Veterinário de demonstração</description>
+      <initValue>'carlos.andrade@vetcare.com'</initValue>
+      <name>VET_EMAIL</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description>Senha dos usuários de demonstração</description>
+      <initValue>'123456'</initValue>
+      <name>SENHA</name>
+   </GlobalVariableEntity>
+</GlobalVariableEntities>

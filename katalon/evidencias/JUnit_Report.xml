@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="PetPulse UI" time="226.867" tests="4" passed="4" failures="0" errors="0" incompleted="0" skipped="0">
+   <testsuite name="PetPulse UI" tests="4" passed="4" failures="0" errors="0" incompleted="0" skipped="0" time="226.867" timestamp="2026-11-02T00:33:05.430Z" hostname="gnlos - DESKTOP-KGTN8F8" id="Test Suites/PetPulse UI" status="PASSED">
+      <properties>
+         <property name="deviceName" value="PetPulse_Pixel7 (emulator-5554 - sdk_gphone64_x86_64 - Android 14)"/>
+         <property name="devicePlatform" value="Android"/>
+         <property name="logFolder" value="C:\\Users\\gnlos\\OneDrive\\\u00C1rea de Trabalho\\SPRINT 4\\automacao-katalon\\PetPulse-Katalon\\Reports\\20261101_213259\\PetPulse UI\\20261101_213301"/>
+         <property name="logFiles" value="C:\\Users\\gnlos\\OneDrive\\\u00C1rea de Trabalho\\SPRINT 4\\automacao-katalon\\PetPulse-Katalon\\Reports\\20261101_213259\\PetPulse UI\\20261101_213301\\appium.log, C:\\Users\\gnlos\\OneDrive\\\u00C1rea de Trabalho\\SPRINT 4\\automacao-katalon\\PetPulse-Katalon\\Reports\\20261101_213259\\PetPulse UI\\20261101_213301\\console0.log, C:\\Users\\gnlos\\OneDrive\\\u00C1rea de Trabalho\\SPRINT 4\\automacao-katalon\\PetPulse-Katalon\\Reports\\20261101_213259\\PetPulse UI\\20261101_213301\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="gnlos - DESKTOP-KGTN8F8"/>
+         <property name="os" value="Windows 10 64bit"/>
+         <property name="katalonVersion" value="11.7.0"/>
+         <property name="deviceOS" value="Android"/>
+         <property name="userFullName" value="Kandevraw"/>
+         <property name="deviceId" value="emulator-5554"/>
+         <property name="deviceName" value="PetPulse_Pixel7 (emulator-5554 - sdk_gphone64_x86_64 - Android 14)"/>
+         <property name="deviceOSVersion" value="14"/>
+         <property name="executionBindingVariables" value="[]"/>
+         <property name="deviceModel" value="sdk_gphone64_x86_64"/>
+         <property name="hostAddress" value="26.145.193.225"/>
+         <property name="projectName" value="PetPulse-Katalon"/>
+         <property name="deviceManufacturer" value="Google"/>
+      </properties>
+      <testcase name="Test Cases/TC-UI-01 Login com senha invalida" time="34.805" classname="Test Cases/TC-UI-01 Login com senha invalida" status="PASSED" tag="PetPulse, UI, Mobile">
+         <system-out><![CDATA[01-11-2026T21:33:05 - [TEST_CASE][PASSED] - Test Cases/TC-UI-01 Login com senha invalida: Test Cases/TC-UI-01 Login com senha invalida
+
+01-11-2026T21:33:05 - [TEST_STEP][PASSED] - Helpers.abrirApp(): Element '//*[@text='Entre na sua conta']' is present
+
+01-11-2026T21:33:06 - [MESSAGE][INFO] - Starting application: 'C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\apk\PetPulse.apk'
+
+01-11-2026T21:33:06 - [MESSAGE][INFO] - Detected NodeJS location: "C:\Program Files\nodejs\node.exe"
+
+01-11-2026T21:33:10 - [MESSAGE][INFO] - appium log: C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\PetPulse-Katalon\Reports\20261101_213259\PetPulse UI\20261101_213301\appium.log
+
+01-11-2026T21:33:13 - [MESSAGE][INFO] - Appium server started on port 63.295
+
+01-11-2026T21:33:20 - [MESSAGE][WARNING] - Unable to get appium status. Root cause (Cannot invoke "com.google.gson.JsonObject.getAsJsonPrimitive(String)" because the return value of "com.google.gson.JsonObject.getAsJsonObject(String)" is null)
+
+01-11-2026T21:33:20 - [MESSAGE][PASSED] - Started application: 'C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\apk\PetPulse.apk'
+
+01-11-2026T21:33:20 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:24 - [MESSAGE][WARNING] - Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:33:24 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:24 - [MESSAGE][PASSED] - Element '//*[@text='Entre na sua conta']' is present
+
+01-11-2026T21:33:24 - [TEST_STEP][PASSED] - Helpers.login("Tutor", TUTOR_EMAIL, "000000"): Tapped on element '//*[@text='Login']'
+
+01-11-2026T21:33:24 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:24 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Tutor']'
+
+01-11-2026T21:33:24 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:27 - [MESSAGE][PASSED] - Text 'security.tutor@petpulse.com' has been set to element '//android.widget.EditText[@hint='Insira seu email' or @text='Insira seu email']'
+
+01-11-2026T21:33:27 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:29 - [MESSAGE][PASSED] - Text '000000' has been set to element '//android.widget.EditText[@hint='Senha' or @text='Senha']'
+
+01-11-2026T21:33:31 - [MESSAGE][PASSED] - Keyboard is hidden
+
+01-11-2026T21:33:31 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:32 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Login']'
+
+01-11-2026T21:33:32 - [TEST_STEP][PASSED] - waitForElementPresent(Helpers.dialogoMensagem(), 120): Element '//*[@resource-id='android:id/message']' is present
+
+01-11-2026T21:33:32 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:35 - [MESSAGE][PASSED] - Element '//*[@resource-id='android:id/message']' is present
+
+01-11-2026T21:33:35 - [TEST_STEP][PASSED] - verifyElementText(Helpers.dialogoTitulo(), "Erro"): Actual text and expected text of test object '//*[contains(@resource-id,'alert_title') or contains(@resource-id,'alertTitle')]' are matched.
+
+01-11-2026T21:33:35 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:35 - [MESSAGE][PASSED] - Actual text and expected text of test object '//*[contains(@resource-id,'alert_title') or contains(@resource-id,'alertTitle')]' are matched.
+
+01-11-2026T21:33:35 - [TEST_STEP][PASSED] - verifyElementText(Helpers.dialogoMensagem(), "E-mail ou senha incorretos."): Actual text and expected text of test object '//*[@resource-id='android:id/message']' are matched.
+
+01-11-2026T21:33:35 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:35 - [MESSAGE][PASSED] - Actual text and expected text of test object '//*[@resource-id='android:id/message']' are matched.
+
+01-11-2026T21:33:35 - [TEST_STEP][PASSED] - tap(Helpers.dialogoOk(), 10): Tapped on element '//*[@resource-id='android:id/button1']'
+
+01-11-2026T21:33:35 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:35 - [MESSAGE][PASSED] - Tapped on element '//*[@resource-id='android:id/button1']'
+
+01-11-2026T21:33:35 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Entre na sua conta"), 10): Element '//*[@text='Entre na sua conta']' is exist
+
+01-11-2026T21:33:35 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:35 - [MESSAGE][PASSED] - Element '//*[@text='Entre na sua conta']' is exist
+
+01-11-2026T21:33:35 - [TEST_STEP][PASSED] - verifyElementNotExist(Helpers.textoContem("Olá,"), 3): Element '//*[contains(@text,'Olá,')]' not found
+
+01-11-2026T21:33:35 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:33:38 - [MESSAGE][PASSED] - Element '//*[contains(@text,'Olá,')]' not found
+
+01-11-2026T21:33:38 - [TEST_STEP][PASSED] - closeApplication(): Close app successfully
+
+01-11-2026T21:33:40 - [MESSAGE][PASSED] - Close app successfully]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/TC-UI-02 Login do tutor exibe pets" time="57.308" classname="Test Cases/TC-UI-02 Login do tutor exibe pets" status="PASSED" tag="PetPulse, UI, Mobile">
+         <system-out><![CDATA[01-11-2026T21:33:40 - [TEST_CASE][PASSED] - Test Cases/TC-UI-02 Login do tutor exibe pets: Test Cases/TC-UI-02 Login do tutor exibe pets
+
+01-11-2026T21:33:40 - [TEST_STEP][PASSED] - dados = Helpers.prepararPet(false): Dados de teste criados: pet 144, coleira 64
+
+01-11-2026T21:33:46 - [MESSAGE][INFO] - Dados de teste criados: pet 144, coleira 64
+
+01-11-2026T21:33:46 - [TEST_STEP][PASSED] - try: Close app successfully
+
+01-11-2026T21:33:46 - [TEST_STEP][PASSED] - Helpers.abrirApp(): Element '//*[@text='Entre na sua conta']' is present
+
+01-11-2026T21:33:46 - [MESSAGE][INFO] - Starting application: 'C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\apk\PetPulse.apk'
+
+01-11-2026T21:33:46 - [MESSAGE][INFO] - Detected NodeJS location: "C:\Program Files\nodejs\node.exe"
+
+01-11-2026T21:33:50 - [MESSAGE][INFO] - appium log: C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\PetPulse-Katalon\Reports\20261101_213259\PetPulse UI\20261101_213301\appium.log
+
+01-11-2026T21:33:53 - [MESSAGE][INFO] - Appium server started on port 63.503
+
+01-11-2026T21:34:00 - [MESSAGE][WARNING] - Unable to get appium status. Root cause (Cannot invoke "com.google.gson.JsonObject.getAsJsonPrimitive(String)" because the return value of "com.google.gson.JsonObject.getAsJsonObject(String)" is null)
+
+01-11-2026T21:34:00 - [MESSAGE][PASSED] - Started application: 'C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\apk\PetPulse.apk'
+
+01-11-2026T21:34:00 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:03 - [MESSAGE][WARNING] - Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:34:03 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:03 - [MESSAGE][PASSED] - Element '//*[@text='Entre na sua conta']' is present
+
+01-11-2026T21:34:03 - [TEST_STEP][PASSED] - Helpers.login("Tutor", TUTOR_EMAIL, SENHA): Tapped on element '//*[@text='Login']'
+
+01-11-2026T21:34:03 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:03 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Tutor']'
+
+01-11-2026T21:34:03 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:05 - [MESSAGE][PASSED] - Text 'security.tutor@petpulse.com' has been set to element '//android.widget.EditText[@hint='Insira seu email' or @text='Insira seu email']'
+
+01-11-2026T21:34:05 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:08 - [MESSAGE][PASSED] - Text '123456' has been set to element '//android.widget.EditText[@hint='Senha' or @text='Senha']'
+
+01-11-2026T21:34:10 - [MESSAGE][PASSED] - Keyboard is hidden
+
+01-11-2026T21:34:10 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:10 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Login']'
+
+01-11-2026T21:34:10 - [TEST_STEP][PASSED] - waitForElementPresent(Helpers.textoContem("Olá,"), 120): Element '//*[contains(@text,'Olá,')]' is present
+
+01-11-2026T21:34:10 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:19 - [MESSAGE][PASSED] - Element '//*[contains(@text,'Olá,')]' is present
+
+01-11-2026T21:34:19 - [TEST_STEP][WARNING] - Helpers.permitirNotificacoes(10): Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:34:19 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:29 - [MESSAGE][WARNING] - Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:34:29 - [TEST_STEP][PASSED] - verifyElementText(Helpers.textoContem("Olá,"), "Olá, Tutor!"): Actual text and expected text of test object '//*[contains(@text,'Olá,')]' are matched.
+
+01-11-2026T21:34:29 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:29 - [MESSAGE][PASSED] - Actual text and expected text of test object '//*[contains(@text,'Olá,')]' are matched.
+
+01-11-2026T21:34:29 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Seus pets"), 10): Element '//*[@text='Seus pets']' is exist
+
+01-11-2026T21:34:29 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:29 - [MESSAGE][PASSED] - Element '//*[@text='Seus pets']' is exist
+
+01-11-2026T21:34:29 - [TEST_STEP][PASSED] - scrollToText("Bidu QA", OPTIONAL): Scrolling to text 'Bidu QA' successfully
+
+01-11-2026T21:34:30 - [MESSAGE][PASSED] - Scrolling to text 'Bidu QA' successfully
+
+01-11-2026T21:34:30 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Bidu QA"), 30): Element '//*[@text='Bidu QA']' is exist
+
+01-11-2026T21:34:30 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:30 - [MESSAGE][PASSED] - Element '//*[@text='Bidu QA']' is exist
+
+01-11-2026T21:34:30 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.textoContem("Golden Retriever"), 10): Element '//*[contains(@text,'Golden Retriever')]' is exist
+
+01-11-2026T21:34:30 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:30 - [MESSAGE][PASSED] - Element '//*[contains(@text,'Golden Retriever')]' is exist
+
+01-11-2026T21:34:30 - [TEST_STEP][PASSED] - tap(Helpers.texto("Bidu QA"), 10): Tapped on element '//*[@text='Bidu QA']'
+
+01-11-2026T21:34:30 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:30 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Bidu QA']'
+
+01-11-2026T21:34:30 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Bidu QA"), 30): Element '//*[@text='Bidu QA']' is exist
+
+01-11-2026T21:34:30 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:31 - [MESSAGE][PASSED] - Element '//*[@text='Bidu QA']' is exist
+
+01-11-2026T21:34:31 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.textoContem("Golden Retriever"), 10): Element '//*[contains(@text,'Golden Retriever')]' is exist
+
+01-11-2026T21:34:31 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:34:31 - [MESSAGE][PASSED] - Element '//*[contains(@text,'Golden Retriever')]' is exist
+
+01-11-2026T21:34:31 - [TEST_STEP][PASSED] - closeApplication(): Close app successfully
+
+01-11-2026T21:34:33 - [MESSAGE][PASSED] - Close app successfully
+
+01-11-2026T21:34:33 - [TEST_STEP][PASSED] - Finally: Dados de teste removidos: pet 144
+
+01-11-2026T21:34:33 - [TEST_STEP][PASSED] - Helpers.limparPet(dados): Dados de teste removidos: pet 144
+
+01-11-2026T21:34:37 - [MESSAGE][INFO] - Dados de teste removidos: pet 144]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/TC-UI-03 Alerta inteligente na Home" time="63.508" classname="Test Cases/TC-UI-03 Alerta inteligente na Home" status="PASSED" tag="PetPulse, UI, Mobile">
+         <system-out><![CDATA[01-11-2026T21:34:37 - [TEST_CASE][PASSED] - Test Cases/TC-UI-03 Alerta inteligente na Home: Test Cases/TC-UI-03 Alerta inteligente na Home
+
+01-11-2026T21:34:37 - [TEST_STEP][PASSED] - dados = Helpers.prepararPet(true): Dados de teste criados: pet 145, coleira 65
+
+01-11-2026T21:34:43 - [MESSAGE][INFO] - Dados de teste criados: pet 145, coleira 65
+
+01-11-2026T21:34:43 - [TEST_STEP][PASSED] - try: Close app successfully
+
+01-11-2026T21:34:43 - [TEST_STEP][PASSED] - Helpers.abrirApp(): Element '//*[@text='Entre na sua conta']' is present
+
+01-11-2026T21:34:43 - [MESSAGE][INFO] - Starting application: 'C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\apk\PetPulse.apk'
+
+01-11-2026T21:34:43 - [MESSAGE][INFO] - Detected NodeJS location: "C:\Program Files\nodejs\node.exe"
+
+01-11-2026T21:34:48 - [MESSAGE][INFO] - appium log: C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\PetPulse-Katalon\Reports\20261101_213259\PetPulse UI\20261101_213301\appium.log
+
+01-11-2026T21:34:50 - [MESSAGE][INFO] - Appium server started on port 63.732
+
+01-11-2026T21:34:57 - [MESSAGE][WARNING] - Unable to get appium status. Root cause (Cannot invoke "com.google.gson.JsonObject.getAsJsonPrimitive(String)" because the return value of "com.google.gson.JsonObject.getAsJsonObject(String)" is null)
+
+01-11-2026T21:34:57 - [MESSAGE][PASSED] - Started application: 'C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\apk\PetPulse.apk'
+
+01-11-2026T21:34:57 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:00 - [MESSAGE][WARNING] - Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:35:00 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:00 - [MESSAGE][PASSED] - Element '//*[@text='Entre na sua conta']' is present
+
+01-11-2026T21:35:00 - [TEST_STEP][PASSED] - Helpers.login("Tutor", TUTOR_EMAIL, SENHA): Tapped on element '//*[@text='Login']'
+
+01-11-2026T21:35:00 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:01 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Tutor']'
+
+01-11-2026T21:35:01 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:04 - [MESSAGE][PASSED] - Text 'security.tutor@petpulse.com' has been set to element '//android.widget.EditText[@hint='Insira seu email' or @text='Insira seu email']'
+
+01-11-2026T21:35:04 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:06 - [MESSAGE][PASSED] - Text '123456' has been set to element '//android.widget.EditText[@hint='Senha' or @text='Senha']'
+
+01-11-2026T21:35:08 - [MESSAGE][PASSED] - Keyboard is hidden
+
+01-11-2026T21:35:08 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:09 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Login']'
+
+01-11-2026T21:35:09 - [TEST_STEP][PASSED] - waitForElementPresent(Helpers.textoContem("Olá,"), 120): Element '//*[contains(@text,'Olá,')]' is present
+
+01-11-2026T21:35:09 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:17 - [MESSAGE][PASSED] - Element '//*[contains(@text,'Olá,')]' is present
+
+01-11-2026T21:35:17 - [TEST_STEP][WARNING] - Helpers.permitirNotificacoes(10): Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:35:17 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:28 - [MESSAGE][WARNING] - Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:35:28 - [TEST_STEP][PASSED] - sino = "//android.widget.TextView[starts-with(@text,'Olá,')]/following::android.view.ViewGroup[@clickable='true'][1]": null
+
+01-11-2026T21:35:28 - [TEST_STEP][PASSED] - waitForElementPresent(Helpers.xpath(sino + "//android.widget.TextView[string-length(@text) > 0]"), 60): Element '//android.widget.TextView[starts-with(@text,'Olá,')]/following::android.view.ViewGroup[@clickable='true'][1]//android.widget.TextView[string-length(@text) > 0]' is present
+
+01-11-2026T21:35:28 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:29 - [MESSAGE][PASSED] - Element '//android.widget.TextView[starts-with(@text,'Olá,')]/following::android.view.ViewGroup[@clickable='true'][1]//android.widget.TextView[string-length(@text) > 0]' is present
+
+01-11-2026T21:35:29 - [TEST_STEP][WARNING] - Helpers.permitirNotificacoes(3): Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:35:29 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:32 - [MESSAGE][WARNING] - Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:35:32 - [TEST_STEP][PASSED] - tap(Helpers.xpath(sino), 10): Tapped on element '//android.widget.TextView[starts-with(@text,'Olá,')]/following::android.view.ViewGroup[@clickable='true'][1]'
+
+01-11-2026T21:35:32 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:32 - [MESSAGE][PASSED] - Tapped on element '//android.widget.TextView[starts-with(@text,'Olá,')]/following::android.view.ViewGroup[@clickable='true'][1]'
+
+01-11-2026T21:35:32 - [TEST_STEP][PASSED] - if (!(waitForElementPresent(Helpers.texto("Notificações"), 5, OPTIONAL))): Element '//*[@text='Notificações']' is present
+
+01-11-2026T21:35:32 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:32 - [MESSAGE][PASSED] - Element '//*[@text='Notificações']' is present
+
+01-11-2026T21:35:32 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Notificações"), 10): Element '//*[@text='Notificações']' is exist
+
+01-11-2026T21:35:32 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:33 - [MESSAGE][PASSED] - Element '//*[@text='Notificações']' is exist
+
+01-11-2026T21:35:33 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Frequência cardíaca fora da faixa esperada."), 30): Element '//*[@text='Frequência cardíaca fora da faixa esperada.']' is exist
+
+01-11-2026T21:35:33 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:33 - [MESSAGE][PASSED] - Element '//*[@text='Frequência cardíaca fora da faixa esperada.']' is exist
+
+01-11-2026T21:35:33 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Recomenda-se avaliação do estado do pet e acompanhamento profissional."), 10): Element '//*[@text='Recomenda-se avaliação do estado do pet e acompanhamento profissional.']' is exist
+
+01-11-2026T21:35:33 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:35:33 - [MESSAGE][PASSED] - Element '//*[@text='Recomenda-se avaliação do estado do pet e acompanhamento profissional.']' is exist
+
+01-11-2026T21:35:33 - [TEST_STEP][PASSED] - closeApplication(): Close app successfully
+
+01-11-2026T21:35:34 - [MESSAGE][PASSED] - Close app successfully
+
+01-11-2026T21:35:34 - [TEST_STEP][PASSED] - Finally: Dados de teste removidos: pet 145
+
+01-11-2026T21:35:34 - [TEST_STEP][PASSED] - Helpers.limparPet(dados): Dados de teste removidos: pet 145
+
+01-11-2026T21:35:41 - [MESSAGE][INFO] - Dados de teste removidos: pet 145]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/TC-UI-04 Veterinario cadastra historico" time="71.111" classname="Test Cases/TC-UI-04 Veterinario cadastra historico" status="PASSED" tag="PetPulse, UI, Mobile">
+         <system-out><![CDATA[01-11-2026T21:35:41 - [TEST_CASE][PASSED] - Test Cases/TC-UI-04 Veterinario cadastra historico: Test Cases/TC-UI-04 Veterinario cadastra historico
+
+01-11-2026T21:35:41 - [TEST_STEP][PASSED] - dados = Helpers.prepararPet(false): Dados de teste criados: pet 146, coleira 66
+
+01-11-2026T21:35:45 - [MESSAGE][INFO] - Dados de teste criados: pet 146, coleira 66
+
+01-11-2026T21:35:45 - [TEST_STEP][PASSED] - try: Close app successfully
+
+01-11-2026T21:35:45 - [TEST_STEP][PASSED] - Helpers.abrirApp(): Element '//*[@text='Entre na sua conta']' is present
+
+01-11-2026T21:35:45 - [MESSAGE][INFO] - Starting application: 'C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\apk\PetPulse.apk'
+
+01-11-2026T21:35:45 - [MESSAGE][INFO] - Detected NodeJS location: "C:\Program Files\nodejs\node.exe"
+
+01-11-2026T21:35:49 - [MESSAGE][INFO] - appium log: C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\PetPulse-Katalon\Reports\20261101_213259\PetPulse UI\20261101_213301\appium.log
+
+01-11-2026T21:35:52 - [MESSAGE][INFO] - Appium server started on port 63.956
+
+01-11-2026T21:35:59 - [MESSAGE][WARNING] - Unable to get appium status. Root cause (Cannot invoke "com.google.gson.JsonObject.getAsJsonPrimitive(String)" because the return value of "com.google.gson.JsonObject.getAsJsonObject(String)" is null)
+
+01-11-2026T21:35:59 - [MESSAGE][PASSED] - Started application: 'C:\Users\gnlos\OneDrive\Área de Trabalho\SPRINT 4\automacao-katalon\apk\PetPulse.apk'
+
+01-11-2026T21:35:59 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:02 - [MESSAGE][WARNING] - Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:36:02 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:02 - [MESSAGE][PASSED] - Element '//*[@text='Entre na sua conta']' is present
+
+01-11-2026T21:36:02 - [TEST_STEP][PASSED] - Helpers.login("Veterinário", VET_EMAIL, SENHA): Tapped on element '//*[@text='Login']'
+
+01-11-2026T21:36:02 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:02 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Veterinário']'
+
+01-11-2026T21:36:02 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:05 - [MESSAGE][PASSED] - Text 'carlos.andrade@vetcare.com' has been set to element '//android.widget.EditText[@hint='Insira seu email' or @text='Insira seu email']'
+
+01-11-2026T21:36:05 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:08 - [MESSAGE][PASSED] - Text '123456' has been set to element '//android.widget.EditText[@hint='Senha' or @text='Senha']'
+
+01-11-2026T21:36:09 - [MESSAGE][PASSED] - Keyboard is hidden
+
+01-11-2026T21:36:09 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:10 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Login']'
+
+01-11-2026T21:36:10 - [TEST_STEP][PASSED] - waitForElementPresent(Helpers.campo("Buscar por pet ou tutor"), 120): Element '//android.widget.EditText[@hint='Buscar por pet ou tutor' or @text='Buscar por pet ou tutor']' is present
+
+01-11-2026T21:36:10 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:13 - [MESSAGE][PASSED] - Element '//android.widget.EditText[@hint='Buscar por pet ou tutor' or @text='Buscar por pet ou tutor']' is present
+
+01-11-2026T21:36:13 - [TEST_STEP][WARNING] - Helpers.permitirNotificacoes(10): Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:36:13 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:23 - [MESSAGE][WARNING] - Object //*[@resource-id='com.android.permissioncontroller:id/permission_allow_button'] not found
+
+01-11-2026T21:36:23 - [TEST_STEP][PASSED] - setText(Helpers.campo("Buscar por pet ou tutor"), "Bidu QA", 10): Text 'Bidu QA' has been set to element '//android.widget.EditText[@hint='Buscar por pet ou tutor' or @text='Buscar por pet ou tutor']'
+
+01-11-2026T21:36:23 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:25 - [MESSAGE][PASSED] - Text 'Bidu QA' has been set to element '//android.widget.EditText[@hint='Buscar por pet ou tutor' or @text='Buscar por pet ou tutor']'
+
+01-11-2026T21:36:25 - [TEST_STEP][PASSED] - hideKeyboard(OPTIONAL): Keyboard is hidden
+
+01-11-2026T21:36:26 - [MESSAGE][PASSED] - Keyboard is hidden
+
+01-11-2026T21:36:26 - [TEST_STEP][PASSED] - tap(Helpers.xpath("//android.widget.TextView[@text='Bidu QA']"), 30): Tapped on element '//android.widget.TextView[@text='Bidu QA']'
+
+01-11-2026T21:36:26 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:27 - [MESSAGE][PASSED] - Tapped on element '//android.widget.TextView[@text='Bidu QA']'
+
+01-11-2026T21:36:27 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("HISTÓRICO CLÍNICO"), 30): Element '//*[@text='HISTÓRICO CLÍNICO']' is exist
+
+01-11-2026T21:36:27 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:28 - [MESSAGE][PASSED] - Element '//*[@text='HISTÓRICO CLÍNICO']' is exist
+
+01-11-2026T21:36:28 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Nenhum registro encontrado."), 30): Element '//*[@text='Nenhum registro encontrado.']' is exist
+
+01-11-2026T21:36:28 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:28 - [MESSAGE][PASSED] - Element '//*[@text='Nenhum registro encontrado.']' is exist
+
+01-11-2026T21:36:28 - [TEST_STEP][PASSED] - tap(Helpers.xpath("(//android.widget.TextView[@text='Bidu QA'])[1]/following::android.view.ViewGroup[@clickable='true'][1]"), 10): Tapped on element '(//android.widget.TextView[@text='Bidu QA'])[1]/following::android.view.ViewGroup[@clickable='true'][1]'
+
+01-11-2026T21:36:28 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:28 - [MESSAGE][PASSED] - Tapped on element '(//android.widget.TextView[@text='Bidu QA'])[1]/following::android.view.ViewGroup[@clickable='true'][1]'
+
+01-11-2026T21:36:28 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Novo Registro"), 10): Element '//*[@text='Novo Registro']' is exist
+
+01-11-2026T21:36:28 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:29 - [MESSAGE][PASSED] - Element '//*[@text='Novo Registro']' is exist
+
+01-11-2026T21:36:29 - [TEST_STEP][PASSED] - tap(Helpers.texto("Consulta"), 10): Tapped on element '//*[@text='Consulta']'
+
+01-11-2026T21:36:29 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:29 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Consulta']'
+
+01-11-2026T21:36:29 - [TEST_STEP][PASSED] - setText(Helpers.campo("Descrição (ex: Vacina V10, Check-up geral)"), "Consulta de rotina QA", 10): Text 'Consulta de rotina QA' has been set to element '//android.widget.EditText[@hint='Descrição (ex: Vacina V10, Check-up geral)' or @text='Descrição (ex: Vacina V10, Check-up geral)']'
+
+01-11-2026T21:36:29 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:31 - [MESSAGE][PASSED] - Text 'Consulta de rotina QA' has been set to element '//android.widget.EditText[@hint='Descrição (ex: Vacina V10, Check-up geral)' or @text='Descrição (ex: Vacina V10, Check-up geral)']'
+
+01-11-2026T21:36:31 - [TEST_STEP][PASSED] - setText(Helpers.campo("Data de retorno (opcional)"), "10012027", 10): Text '10012027' has been set to element '//android.widget.EditText[@hint='Data de retorno (opcional)' or @text='Data de retorno (opcional)']'
+
+01-11-2026T21:36:31 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:34 - [MESSAGE][PASSED] - Text '10012027' has been set to element '//android.widget.EditText[@hint='Data de retorno (opcional)' or @text='Data de retorno (opcional)']'
+
+01-11-2026T21:36:34 - [TEST_STEP][PASSED] - verifyElementText(Helpers.campo("Data de retorno (opcional)"), "10/01/2027"): Actual text and expected text of test object '//android.widget.EditText[@hint='Data de retorno (opcional)' or @text='Data de retorno (opcional)']' are matched.
+
+01-11-2026T21:36:34 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:34 - [MESSAGE][PASSED] - Actual text and expected text of test object '//android.widget.EditText[@hint='Data de retorno (opcional)' or @text='Data de retorno (opcional)']' are matched.
+
+01-11-2026T21:36:34 - [TEST_STEP][PASSED] - hideKeyboard(OPTIONAL): Keyboard is hidden
+
+01-11-2026T21:36:36 - [MESSAGE][PASSED] - Keyboard is hidden
+
+01-11-2026T21:36:36 - [TEST_STEP][PASSED] - scrollToText("Cadastrar Registro", OPTIONAL): Scrolling to text 'Cadastrar Registro' successfully
+
+01-11-2026T21:36:37 - [MESSAGE][PASSED] - Scrolling to text 'Cadastrar Registro' successfully
+
+01-11-2026T21:36:37 - [TEST_STEP][PASSED] - tap(Helpers.texto("Cadastrar Registro"), 10): Tapped on element '//*[@text='Cadastrar Registro']'
+
+01-11-2026T21:36:37 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:37 - [MESSAGE][PASSED] - Tapped on element '//*[@text='Cadastrar Registro']'
+
+01-11-2026T21:36:37 - [TEST_STEP][PASSED] - waitForElementPresent(Helpers.dialogoMensagem(), 60): Element '//*[@resource-id='android:id/message']' is present
+
+01-11-2026T21:36:37 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:39 - [MESSAGE][PASSED] - Element '//*[@resource-id='android:id/message']' is present
+
+01-11-2026T21:36:39 - [TEST_STEP][PASSED] - verifyElementText(Helpers.dialogoMensagem(), "Registro cadastrado com sucesso!"): Actual text and expected text of test object '//*[@resource-id='android:id/message']' are matched.
+
+01-11-2026T21:36:39 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:39 - [MESSAGE][PASSED] - Actual text and expected text of test object '//*[@resource-id='android:id/message']' are matched.
+
+01-11-2026T21:36:39 - [TEST_STEP][PASSED] - tap(Helpers.dialogoOk(), 10): Tapped on element '//*[@resource-id='android:id/button1']'
+
+01-11-2026T21:36:39 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:40 - [MESSAGE][PASSED] - Tapped on element '//*[@resource-id='android:id/button1']'
+
+01-11-2026T21:36:40 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Consulta de rotina QA"), 30): Element '//*[@text='Consulta de rotina QA']' is exist
+
+01-11-2026T21:36:40 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:43 - [MESSAGE][PASSED] - Element '//*[@text='Consulta de rotina QA']' is exist
+
+01-11-2026T21:36:43 - [TEST_STEP][PASSED] - verifyElementExist(Helpers.texto("Retorno: 10/01/2027"), 10): Element '//*[@text='Retorno: 10/01/2027']' is exist
+
+01-11-2026T21:36:43 - [MESSAGE][WARNING] - The input TestObject is not a MobileTestObject. Self-Healing is not supported
+
+01-11-2026T21:36:43 - [MESSAGE][PASSED] - Element '//*[@text='Retorno: 10/01/2027']' is exist
+
+01-11-2026T21:36:43 - [TEST_STEP][PASSED] - historicos = Helpers.historicosDoPet(petId): null
+
+01-11-2026T21:36:46 - [TEST_STEP][PASSED] - assert historicos.size() == 1: null
+
+01-11-2026T21:36:46 - [TEST_STEP][PASSED] - assert recordType == "CONSULTA": null
+
+01-11-2026T21:36:46 - [TEST_STEP][PASSED] - assert description == "Consulta de rotina QA": null
+
+01-11-2026T21:36:46 - [TEST_STEP][PASSED] - assert returnDate == "2027-01-10": null
+
+01-11-2026T21:36:46 - [TEST_STEP][PASSED] - closeApplication(): Close app successfully
+
+01-11-2026T21:36:47 - [MESSAGE][PASSED] - Close app successfully
+
+01-11-2026T21:36:47 - [TEST_STEP][PASSED] - Finally: Dados de teste removidos: pet 146
+
+01-11-2026T21:36:47 - [TEST_STEP][PASSED] - Helpers.limparPet(dados): Dados de teste removidos: pet 146
+
+01-11-2026T21:36:52 - [MESSAGE][INFO] - Dados de teste removidos: pet 146]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[01-11-2026T21:33:05 - [TEST_SUITE][PASSED] - PetPulse UI: null]]></system-out>
+      <system-err><![CDATA[]]></system-err>
+   </testsuite>
+</testsuites>

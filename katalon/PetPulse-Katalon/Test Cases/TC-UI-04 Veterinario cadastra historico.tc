@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TC-UI-04 - Veterinário cadastra histórico clínico pelo painel (caso manual CT19)
+Pré-condição (criada pela API): pet "Bidu QA" sem histórico.
+Entrada: login Veterinário carlos.andrade@vetcare.com / 123456, busca "Bidu QA",
+         registro Consulta "Consulta de rotina QA" com retorno 10/01/2027.
+Saída esperada: diálogo "Registro cadastrado com sucesso!", registro listado no histórico do pet
+                e gravado na API (GET /pets/{id}/health-summary).</description>
+   <name>TC-UI-04 Veterinario cadastra historico</name>
+   <tag>PetPulse, UI, Mobile</tag>
+   <comment></comment>
+   <testCaseGuid>27ba9fb7-81ea-4e33-9ee6-094c9e6b9dbe</testCaseGuid>
+</TestCaseEntity>

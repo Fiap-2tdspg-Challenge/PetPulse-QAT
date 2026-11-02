@@ -1,0 +1,8 @@
+Reports/
+Libs/
+bin/
+output/
+.classpath
+.project
+.settings/
+settings/internal/
